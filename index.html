@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MeetSync</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <!-- LOGIN -->
+  <template id="tpl-login">
+    <section>
+      <h1>MeetSync</h1>
+      <h2>Login</h2>
+
+      <form id="loginForm">
+        <label>
+          Username
+          <input name="username" autocomplete="username" required />
+        </label>
+        <br/>
+        <label>
+          Password
+          <input name="password" type="password" autocomplete="current-password" required />
+        </label>
+        <br/>
+        <button type="submit">Login</button>
+      </form>
+
+      <p>
+        New here?
+        <a href="#/register" id="goRegister">Create account</a>
+      </p>
+
+      <div id="loginMsg" aria-live="polite"></div>
+    </section>
+  </template>
+
+  <!-- REGISTER -->
+  <template id="tpl-register">
+    <section>
+      <h1>MeetSync</h1>
+      <h2>Register</h2>
+
+      <form id="registerForm">
+        <label>
+          Username
+          <input name="username" autocomplete="username" required />
+        </label>
+        <br/>
+        <label>
+          Password
+          <input name="password" type="password" autocomplete="new-password" required />
+        </label>
+        <br/>
+        <label>
+          Confirm password
+          <input name="confirm" type="password" autocomplete="new-password" required />
+        </label>
+        <br/>
+        <button type="submit">Create account</button>
+      </form>
+
+      <p>
+        Already have an account?
+        <a href="#/login" id="goLogin">Back to login</a>
+      </p>
+
+      <div id="registerMsg" aria-live="polite"></div>
+    </section>
+  </template>
+
+  <!-- MEETINGS -->
+<template id="tpl-meetings">
+  <section>
+    <header>
+      <h1>MeetSync</h1>
+      <button id="logoutBtn" type="button">Logout</button>
+    </header>
+
+    <h2>My Meetings</h2>
+
+    <div>
+      <input id="searchInput" placeholder="Search by title..." />
+      <button id="newBtn" type="button">+ New</button>
+    </div>
+
+    <ul id="meetingsList"></ul>
+    <div id="meetingsMsg" aria-live="polite"></div>
+
+    <!-- Modal -->
+    <dialog id="meetingDialog">
+      <form id="meetingForm" method="dialog">
+        <h3 id="dialogTitle">New Meeting</h3>
+
+        <input type="hidden" name="id" />
+
+        <label>Title<br/>
+          <input name="title" required />
+        </label><br/>
+
+        <label>Date<br/>
+          <input name="date" type="date" required />
+        </label><br/>
+
+        <label>Time<br/>
+          <input name="time" type="time" required />
+        </label><br/>
+
+        <label>Location<br/>
+          <input name="location" />
+        </label><br/>
+
+        <label>Notes<br/>
+          <textarea name="notes" rows="3"></textarea>
+        </label><br/>
+
+        <menu>
+          <button id="cancelBtn" type="button">Cancel</button>
+          <button id="saveBtn" type="submit">Save</button>
+        </menu>
+
+        <div id="dialogMsg" aria-live="polite"></div>
+      </form>
+    </dialog>
+  </section>
+</template>
+
+
+  <script type="module" src="./src/client/main.js"></script>
+</body>
+</html>

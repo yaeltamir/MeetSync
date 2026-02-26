@@ -1,3 +1,4 @@
+<!-- index.html — entry point: HTML shell, stylesheet link, <template> partials, and module bootstrap -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,9 +8,10 @@
   <link rel="stylesheet" href="./assets/css/app.css">
 </head>
 <body>
+  <!-- Router mounts the active view here by cloning the matching <template> -->
   <div id="app"></div>
 
-  <!-- LOGIN -->
+  <!-- Login: username/password form, link to register -->
   <template id="tpl-login">
     <section>
       <h1>MeetSync</h1>
@@ -34,11 +36,12 @@
         <a href="#/register" id="goRegister">Create account</a>
       </p>
 
+      <!-- Populated by loginView.js with success/error feedback -->
       <div id="loginMsg" aria-live="polite"></div>
     </section>
   </template>
 
-  <!-- REGISTER -->
+  <!-- Register: username, password, confirm; link back to login -->
   <template id="tpl-register">
     <section>
       <h1>MeetSync</h1>
@@ -68,12 +71,13 @@
         <a href="#/login" id="goLogin">Back to login</a>
       </p>
 
+      <!-- Populated by registerView.js with success/error feedback -->
       <div id="registerMsg" aria-live="polite"></div>
     </section>
   </template>
 
-  <!-- MEETINGS -->
-<template id="tpl-meetings">
+  <!-- Meetings: list, search, new/edit modal, logout -->
+  <template id="tpl-meetings">
   <section>
     <header>
       <h1>MeetSync</h1>
@@ -82,19 +86,24 @@
 
     <h2>My Meetings</h2>
 
+    <!-- Search bar and new-meeting trigger -->
     <div>
       <input id="searchInput" placeholder="Search by title..." />
       <button id="newBtn" type="button">+ New</button>
     </div>
 
+    <!-- meetingsView.js renders one <li> per meeting here -->
     <ul id="meetingsList"></ul>
+    <!-- Populated by meetingsView.js with loading/error/empty state -->
     <div id="meetingsMsg" aria-live="polite"></div>
 
-    <!-- Modal -->
+    <!-- New/Edit meeting modal -->
     <dialog id="meetingDialog">
+      <!-- method="dialog" lets the native <dialog> close on submit -->
       <form id="meetingForm" method="dialog">
         <h3 id="dialogTitle">New Meeting</h3>
 
+        <!-- Hidden field carries the meeting ID when editing; empty when creating -->
         <input type="hidden" name="id" />
 
         <label>Title<br/>
@@ -122,6 +131,7 @@
           <button id="saveBtn" type="submit">Save</button>
         </menu>
 
+        <!-- Populated by meetingsView.js with save errors -->
         <div id="dialogMsg" aria-live="polite"></div>
       </form>
     </dialog>
@@ -129,6 +139,7 @@
 </template>
 
 
+  <!-- Bootstrap: loads the client-side app as an ES module -->
   <script type="module" src="./src/client/main.js"></script>
 </body>
 </html>
